@@ -1,7 +1,6 @@
-import datetime
 import os
-
 import isodate
+import datetime
 from googleapiclient.discovery import build
 
 
@@ -17,9 +16,9 @@ class PlayList:
                                                                      maxResults=50,
                                                                      ).execute()
         self.video_ids: list[str] = [video['contentDetails']['videoId'] for video in self.playlist_videos['items']]
-        self.title = self.playlist_info()['items'][0]['snippet']['localized']['title']
+        self.title = self.playlist_inform()['items'][0]['snippet']['localized']['title']
 
-    def playlist_info(self):
+    def playlist_inform(self):
         playlist_videos = self.youtube.playlists().list(part='snippet',
                                                         id=self.playlist_id,
                                                         ).execute()
